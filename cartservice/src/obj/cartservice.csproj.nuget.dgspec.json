@@ -1,0 +1,114 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Users\\Krishna Singh\\OneDrive\\Desktop\\cicd-gke\\e-cart\\src\\cartservice\\src\\cartservice.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\Krishna Singh\\OneDrive\\Desktop\\cicd-gke\\e-cart\\src\\cartservice\\src\\cartservice.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\Krishna Singh\\OneDrive\\Desktop\\cicd-gke\\e-cart\\src\\cartservice\\src\\cartservice.csproj",
+        "projectName": "cartservice",
+        "projectPath": "C:\\Users\\Krishna Singh\\OneDrive\\Desktop\\cicd-gke\\e-cart\\src\\cartservice\\src\\cartservice.csproj",
+        "packagesPath": "C:\\Users\\Krishna Singh\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Krishna Singh\\OneDrive\\Desktop\\cicd-gke\\e-cart\\src\\cartservice\\src\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\Krishna Singh\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net7.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net7.0": {
+            "targetAlias": "net7.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.100"
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "dependencies": {
+            "Google.Cloud.SecretManager.V1": {
+              "target": "Package",
+              "version": "[2.3.0, )"
+            },
+            "Google.Cloud.Spanner.Data": {
+              "target": "Package",
+              "version": "[4.6.0, )"
+            },
+            "Grpc.AspNetCore": {
+              "target": "Package",
+              "version": "[2.62.0, )"
+            },
+            "Grpc.HealthCheck": {
+              "target": "Package",
+              "version": "[2.62.0, )"
+            },
+            "Microsoft.Extensions.Caching.StackExchangeRedis": {
+              "target": "Package",
+              "version": "[8.0.4, )"
+            },
+            "Npgsql": {
+              "target": "Package",
+              "version": "[8.0.2, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[7.0.20, 7.0.20]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Host.win-x64",
+              "version": "[7.0.20, 7.0.20]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[7.0.20, 7.0.20]"
+            },
+            {
+              "name": "Microsoft.WindowsDesktop.App.Ref",
+              "version": "[7.0.20, 7.0.20]"
+            }
+          ],
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.109\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
