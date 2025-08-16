@@ -21,7 +21,10 @@ pipeline {
             ],
             description: 'Select which service to build & push (choose "all" for every service)'
         )
-        choice(name: 'IMAGE_TAG', choice: ['latest','v1','v2'], description: 'Docker image tag (e.g. v1, latest, commit hash)')
+        choice(
+            name: 'IMAGE_TAG', 
+            choices: ['latest','v1','v2'], 
+            description: 'Docker image tag (e.g. v1, latest, commit hash)')
     }
 
     environment {
