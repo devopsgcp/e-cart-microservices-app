@@ -69,6 +69,42 @@ pipeline {
             }
         }
 
+        stage('Trivy Scan') {
+            steps {
+                script {
+                    def services = []
+                    if (params.SERVICE == "all") {
+                        services = [
+                            "adservice",
+                            "cartservice",
+                            "checkoutservice",
+                            "currencyservice",
+                            "emailservice",
+                            "frontend",
+                            "loadgenerator",
+                            "paymentservice",
+                            "productcatalogservice",
+                            "recommendationservice",
+                            "shippingservice",
+                            "shoppingassistantservice"
+                        ]
+                    } else {
+                        services = [params.SERVICE]
+                    }
+
+                    services.each { service ->
+                        echo "🔍 Running Trivy scan for ${service}"
+                        sh """
+                            trivy image --severity HIGH,CRITICAL --format json \
+                              -o trivy-${service}-report.json ${service}:${IMAGE_TAG} || true
+                        """
+                    }
+                }
+                archiveArtifacts artifacts: 'trivy-*.json', allowEmptyArchive: true
+            }
+        }
+        
+        
         stage('Set up GCP Auth') {
             steps {
                 withCredentials([file(credentialsId: 'gcp-sa-key', variable: 'GOOGLE_APPLICATION_CREDENTIALS')]) {
