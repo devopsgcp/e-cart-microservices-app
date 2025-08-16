@@ -1,22 +1,115 @@
 pipeline {
     agent any
+
+    parameters {
+        choice(
+            name: 'SERVICE',
+            choices: [
+                'all',
+                'adservice',
+                'cartservice',
+                'checkoutservice',
+                'currencyservice',
+                'emailservice',
+                'frontend',
+                'loadgenerator',
+                'paymentservice',
+                'productcatalogservice',
+                'recommendationservice',
+                'shippingservice',
+                'shoppingassistantservice'
+            ],
+            description: 'Select which service to build & push (choose "all" for every service)'
+        )
+        string(name: 'IMAGE_TAG', defaultValue: 'v1', description: 'Docker image tag (e.g. v1, latest, commit hash)')
+    }
+
+    environment {
+        PROJECT_ID = 'cicd-2024'
+        REGION = 'asia-south2'
+        REPO_NAME = 'e-cart-app'
+        ARTIFACT_REGISTRY = "${REGION}-docker.pkg.dev"
+    }
+
     stages {
-        stage('Docker build images') {
+        stage('Docker Build Images') {
             steps {
-                sh '''
-                  docker build -t adservice:v1 -f adservice/Dockerfile adservice
-                  docker build -t cartservice:v1 -f cartservice/src/Dockerfile cartservice/src
-                  docker build -t checkoutservice:v1 -f checkoutservice/Dockerfile checkoutservice
-                  docker build -t currencyservice:v1 -f currencyservice/Dockerfile currencyservice
-                  docker build -t emailservice:v1 -f emailservice/Dockerfile emailservice
-                  docker build -t frontend:v1 -f frontend/Dockerfile frontend
-                  docker build -t loadgenerator:v1 -f loadgenerator/Dockerfile loadgenerator
-                  docker build -t paymentservice:v1 -f paymentservice/Dockerfile paymentservice
-                  docker build -t productcatalogservice:v1 -f productcatalogservice/Dockerfile productcatalogservice
-                  docker build -t recommendationservice:v1 -f recommendationservice/Dockerfile recommendationservice
-                  docker build -t shippingservice:v1 -f shippingservice/Dockerfile shippingservice
-                  docker build -t shoppingassistantservice:v1 -f shoppingassistantservice/Dockerfile shoppingassistantservice
-                '''
+                script {
+                    def services = []
+                    if (params.SERVICE == "all") {
+                        services = [
+                            "adservice",
+                            "cartservice",
+                            "checkoutservice",
+                            "currencyservice",
+                            "emailservice",
+                            "frontend",
+                            "loadgenerator",
+                            "paymentservice",
+                            "productcatalogservice",
+                            "recommendationservice",
+                            "shippingservice",
+                            "shoppingassistantservice"
+                        ]
+                    } else {
+                        services = [params.SERVICE]
+                    }
+
+                    services.each { service ->
+                        echo "🔨 Building Docker image for ${service}"
+                        sh """
+                            docker build -t ${service}:${IMAGE_TAG} -f ${service}/Dockerfile ${service} || \
+                            docker build -t ${service}:${IMAGE_TAG} -f ${service}/src/Dockerfile ${service}/src
+                        """
+                    }
+                }
+            }
+        }
+
+        stage('Set up GCP Auth') {
+            steps {
+                withCredentials([file(credentialsId: 'gcp-sa-key', variable: 'GOOGLE_APPLICATION_CREDENTIALS')]) {
+                    sh '''
+                        echo "🔑 Activating service account..."
+                        gcloud auth activate-service-account --key-file=$GOOGLE_APPLICATION_CREDENTIALS
+                        gcloud config set project $PROJECT_ID
+                        gcloud auth configure-docker $ARTIFACT_REGISTRY --quiet
+                    '''
+                }
+            }
+        }
+
+        stage('Tag & Push Images to Artifact Registry') {
+            steps {
+                script {
+                    def services = []
+                    if (params.SERVICE == "all") {
+                        services = [
+                            "adservice",
+                            "cartservice",
+                            "checkoutservice",
+                            "currencyservice",
+                            "emailservice",
+                            "frontend",
+                            "loadgenerator",
+                            "paymentservice",
+                            "productcatalogservice",
+                            "recommendationservice",
+                            "shippingservice",
+                            "shoppingassistantservice"
+                        ]
+                    } else {
+                        services = [params.SERVICE]
+                    }
+
+                    services.each { service ->
+                        echo "📦 Tagging and pushing ${service}..."
+                        sh """
+                            docker tag ${service}:${IMAGE_TAG} $ARTIFACT_REGISTRY/$PROJECT_ID/$REPO_NAME/${service}:${IMAGE_TAG}
+                            docker push $ARTIFACT_REGISTRY/$PROJECT_ID/$REPO_NAME/${service}:${IMAGE_TAG}
+                        """
+                    }
+                }
             }
         }
     }
