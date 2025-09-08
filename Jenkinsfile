@@ -62,7 +62,7 @@ pipeline {
                     services.each { service ->
                         echo "🔨 Building Docker image for ${service}"
                         sh """
-                            docker build -t ${service}:${IMAGE_TAG} -f ${service}/Dockerfile ${service} || \
+                            docker build -t ${service}:${IMAGE_TAG} -f apps/${service}/Dockerfile ${service} || \
                             docker build -t ${service}:${IMAGE_TAG} -f ${service}/src/Dockerfile ${service}/src
                         """
                     }
