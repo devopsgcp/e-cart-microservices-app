@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Krishna Singh\\OneDrive\\Desktop\\cicd-gke\\e-cart-microservices-app\\cartservice\\src\\cartservice.csproj": {}
+    "C:\\Users\\Krishna Singh\\OneDrive\\Desktop\\GCP\\e-cart-microservices-app\\apps\\cartservice\\src\\cartservice.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Krishna Singh\\OneDrive\\Desktop\\cicd-gke\\e-cart-microservices-app\\cartservice\\src\\cartservice.csproj": {
+    "C:\\Users\\Krishna Singh\\OneDrive\\Desktop\\GCP\\e-cart-microservices-app\\apps\\cartservice\\src\\cartservice.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Krishna Singh\\OneDrive\\Desktop\\cicd-gke\\e-cart-microservices-app\\cartservice\\src\\cartservice.csproj",
+        "projectUniqueName": "C:\\Users\\Krishna Singh\\OneDrive\\Desktop\\GCP\\e-cart-microservices-app\\apps\\cartservice\\src\\cartservice.csproj",
         "projectName": "cartservice",
-        "projectPath": "C:\\Users\\Krishna Singh\\OneDrive\\Desktop\\cicd-gke\\e-cart-microservices-app\\cartservice\\src\\cartservice.csproj",
+        "projectPath": "C:\\Users\\Krishna Singh\\OneDrive\\Desktop\\GCP\\e-cart-microservices-app\\apps\\cartservice\\src\\cartservice.csproj",
         "packagesPath": "C:\\Users\\Krishna Singh\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Krishna Singh\\OneDrive\\Desktop\\cicd-gke\\e-cart-microservices-app\\cartservice\\src\\obj\\",
+        "outputPath": "C:\\Users\\Krishna Singh\\OneDrive\\Desktop\\GCP\\e-cart-microservices-app\\apps\\cartservice\\src\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Krishna Singh\\AppData\\Roaming\\NuGet\\NuGet.Config"

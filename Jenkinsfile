@@ -152,5 +152,7 @@ pipeline {
                 }
             }
         }
+
+        stage ('Deploy to gke cluster')
     }
 }

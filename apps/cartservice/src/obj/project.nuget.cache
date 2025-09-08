@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Rofh8BY+TYo=",
+  "dgSpecHash": "ZwQ0CQmYL88=",
   "success": true,
-  "projectFilePath": "C:\\Users\\Krishna Singh\\OneDrive\\Desktop\\cicd-gke\\e-cart-microservices-app\\cartservice\\src\\cartservice.csproj",
+  "projectFilePath": "C:\\Users\\Krishna Singh\\OneDrive\\Desktop\\GCP\\e-cart-microservices-app\\apps\\cartservice\\src\\cartservice.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Krishna Singh\\.nuget\\packages\\google.api.commonprotos\\2.15.0\\google.api.commonprotos.2.15.0.nupkg.sha512",
     "C:\\Users\\Krishna Singh\\.nuget\\packages\\google.api.gax\\4.8.0\\google.api.gax.4.8.0.nupkg.sha512",
