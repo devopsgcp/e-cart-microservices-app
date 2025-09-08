@@ -32,6 +32,7 @@ pipeline {
         REGION = 'asia-south2'
         REPO_NAME = 'e-cart-app'
         ARTIFACT_REGISTRY = "${REGION}-docker.pkg.dev"
+        IMAGE_TAG        = "${params.IMAGE_TAG}"
     }
 
     stages {
